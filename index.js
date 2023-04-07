@@ -42,10 +42,25 @@ const draw = (data) => {
             }
         }
     }
+
     return data
 }
 
-function deplacerPersonnage(tableau, direction) {
+function functionStockFlag(data) {
+    let stockFlag = []
+    
+    for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[0].length; j++) {
+            if (data[i][j] === 4) {
+                stockFlag.push([i, j])
+            }
+        }
+    }
+
+    return stockFlag
+}
+
+function deplacerPersonnage(tableau, direction, stockFlag) {
     // Obtenir les positions du joueur
     let pos_x, pos_y;
     for (let i = 0; i < tableau.length; i++) {
@@ -53,15 +68,21 @@ function deplacerPersonnage(tableau, direction) {
         if (tableau[i][j] === 3) {
           pos_x = i;
           pos_y = j;
+        } else if (tableau[i][j] === 4) {
+            stockFlag.push([i, j])
         }
       }
     }
-    
+
     // Déplacer le personnage en fonction de la direction
     if (direction === 38 && pos_x > 0 && tableau[pos_x-1][pos_y] !== 1) {
         // Changer position cube
         if (tableau[pos_x-1][pos_y] == 2) {
             if (tableau[pos_x-2][pos_y] == 0) {
+                tableau[pos_x-1][pos_y] = 3
+                tableau[pos_x-2][pos_y] = 2
+                tableau[pos_x][pos_y] = 0
+            } else if (tableau[pos_x-2][pos_y] == 4) {
                 tableau[pos_x-1][pos_y] = 3
                 tableau[pos_x-2][pos_y] = 2
                 tableau[pos_x][pos_y] = 0
@@ -77,6 +98,10 @@ function deplacerPersonnage(tableau, direction) {
                 tableau[pos_x+1][pos_y] = 3
                 tableau[pos_x+2][pos_y] = 2
                 tableau[pos_x][pos_y] = 0
+            } else if (tableau[pos_x+2][pos_y] == 4) {
+                tableau[pos_x+1][pos_y] = 3
+                tableau[pos_x+2][pos_y] = 2
+                tableau[pos_x][pos_y] = 0
             }
         } else {
             tableau[pos_x][pos_y] = 0
@@ -86,6 +111,10 @@ function deplacerPersonnage(tableau, direction) {
         // Changer position cube
         if (tableau[pos_x][pos_y-1] == 2) {
             if (tableau[pos_x][pos_y-2] == 0) {
+                tableau[pos_x][pos_y-1] = 3
+                tableau[pos_x][pos_y-2] = 2
+                tableau[pos_x][pos_y] = 0
+            } else if (tableau[pos_x][pos_y-2] == 4) {
                 tableau[pos_x][pos_y-1] = 3
                 tableau[pos_x][pos_y-2] = 2
                 tableau[pos_x][pos_y] = 0
@@ -101,10 +130,21 @@ function deplacerPersonnage(tableau, direction) {
                 tableau[pos_x][pos_y+1] = 3
                 tableau[pos_x][pos_y+2] = 2
                 tableau[pos_x][pos_y] = 0
+            } else if (tableau[pos_x][pos_y+2] == 4) {
+                tableau[pos_x][pos_y+1] = 3
+                tableau[pos_x][pos_y+2] = 2
+                tableau[pos_x][pos_y] = 0
             }
         } else {
             tableau[pos_x][pos_y] = 0
             tableau[pos_x][pos_y+1] = 3
+        }
+    }
+
+    // Flag
+    for (let i = 0; i < stockFlag.length; i++) {
+        if (tableau[stockFlag[i][0]][stockFlag[i][1]] == 0) {
+            tableau[stockFlag[i][0]][stockFlag[i][1]] = 4
         }
     }
     
@@ -115,22 +155,24 @@ function deplacerPersonnage(tableau, direction) {
   
 
 let data = Levels[0]
+let stockFlag = functionStockFlag(data)
 
 document.addEventListener("keydown", function(event) {
     switch (event.keyCode) {
       case 38: // Flèche haut
-        data = deplacerPersonnage(data, 38)
+        data = deplacerPersonnage(data, 38, stockFlag)
         break;
       case 40: // Flèche bas
-        data = deplacerPersonnage(data, 40)
+        data = deplacerPersonnage(data, 40, stockFlag)
         break;
       case 37: // Flèche gauche
-        data = deplacerPersonnage(data, 37)
+        data = deplacerPersonnage(data, 37, stockFlag)
         break;
       case 39: // Flèche droite
-        data = deplacerPersonnage(data, 39)
+        data = deplacerPersonnage(data, 39, stockFlag)
         break;
     }
+
     document.getElementById('gameboard').innerHTML = ""
     window.requestAnimationFrame(draw(data))
 });

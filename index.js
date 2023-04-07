@@ -172,6 +172,15 @@ document.addEventListener("keydown", function(event) {
         data = deplacerPersonnage(data, 39, stockFlag)
         break;
     }
+    let compteur = 0
+    for (let i = 0; i < stockFlag.length; i++) {
+        if (data[stockFlag[i][0]][stockFlag[i][1]] == 2) {
+            compteur++
+        }
+    }
+    if (compteur == stockFlag.length) {
+        console.log("fait");
+    }
 
     document.getElementById('gameboard').innerHTML = ""
     window.requestAnimationFrame(draw(data))

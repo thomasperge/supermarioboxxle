@@ -153,8 +153,8 @@ function deplacerPersonnage(tableau, direction, stockFlag) {
     return tableau;
 }
   
-
-let data = Levels[0]
+let level = 0
+let data = Levels[level]
 let stockFlag = functionStockFlag(data)
 
 document.addEventListener("keydown", function(event) {
@@ -179,7 +179,11 @@ document.addEventListener("keydown", function(event) {
         }
     }
     if (compteur == stockFlag.length) {
-        console.log("fait");
+        if(level <= 5 ){
+            level++
+            data = Levels[level]
+            stockFlag = []
+        }
     }
 
     document.getElementById('gameboard').innerHTML = ""

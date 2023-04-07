@@ -59,13 +59,53 @@ function deplacerPersonnage(tableau, direction) {
     
     // Déplacer le personnage en fonction de la direction
     if (direction === 38 && pos_x > 0 && tableau[pos_x-1][pos_y] !== 1) {
-        [tableau[pos_x][pos_y], tableau[pos_x-1][pos_y]] = [tableau[pos_x-1][pos_y], tableau[pos_x][pos_y]];
+        // Changer position cube
+        if (tableau[pos_x-1][pos_y] == 2) {
+            if (tableau[pos_x-2][pos_y] == 0) {
+                tableau[pos_x-1][pos_y] = 3
+                tableau[pos_x-2][pos_y] = 2
+                tableau[pos_x][pos_y] = 0
+            }
+        } else {
+            tableau[pos_x][pos_y] = 0
+            tableau[pos_x-1][pos_y] = 3
+        }
     } else if (direction === 40 && pos_x < tableau.length-1 && tableau[pos_x+1][pos_y] !== 1) {
-        [tableau[pos_x][pos_y], tableau[pos_x+1][pos_y]] = [tableau[pos_x+1][pos_y], tableau[pos_x][pos_y]];
+        // Changer position cube
+        if (tableau[pos_x+1][pos_y] == 2) {
+            if (tableau[pos_x+2][pos_y] == 0) {
+                tableau[pos_x+1][pos_y] = 3
+                tableau[pos_x+2][pos_y] = 2
+                tableau[pos_x][pos_y] = 0
+            }
+        } else {
+            tableau[pos_x][pos_y] = 0
+            tableau[pos_x+1][pos_y] = 3
+        }
     } else if (direction === 37 && pos_y > 0 && tableau[pos_x][pos_y-1] !== 1) {
-        [tableau[pos_x][pos_y], tableau[pos_x][pos_y-1]] = [tableau[pos_x][pos_y-1], tableau[pos_x][pos_y]];
+        // Changer position cube
+        if (tableau[pos_x][pos_y-1] == 2) {
+            if (tableau[pos_x][pos_y-2] == 0) {
+                tableau[pos_x][pos_y-1] = 3
+                tableau[pos_x][pos_y-2] = 2
+                tableau[pos_x][pos_y] = 0
+            }
+        } else {
+            tableau[pos_x][pos_y] = 0
+            tableau[pos_x][pos_y-1] = 3
+        }
     } else if (direction === 39 && pos_y < tableau[0].length-1 && tableau[pos_x][pos_y+1] !== 1) {
-        [tableau[pos_x][pos_y], tableau[pos_x][pos_y+1]] = [tableau[pos_x][pos_y+1], tableau[pos_x][pos_y]];
+        // Changer position cube
+        if (tableau[pos_x][pos_y+1] == 2) {
+            if (tableau[pos_x][pos_y+2] == 0) {
+                tableau[pos_x][pos_y+1] = 3
+                tableau[pos_x][pos_y+2] = 2
+                tableau[pos_x][pos_y] = 0
+            }
+        } else {
+            tableau[pos_x][pos_y] = 0
+            tableau[pos_x][pos_y+1] = 3
+        }
     }
     
     // Retourner le tableau modifié

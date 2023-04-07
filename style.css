@@ -4,8 +4,8 @@
 }
 
 body {
-    background-image: url("./assets/background.gif");
-    background-size: cover;
+    background-image: url("assets/fondmario.gif");
+    background-size:contain;
 }
 
 .flex{

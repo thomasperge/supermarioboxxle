@@ -177,4 +177,11 @@ document.addEventListener("keydown", function(event) {
     window.requestAnimationFrame(draw(data))
 });
 
+window.requestAnimationFrame(gameLoop);
+
+function gameLoop() {
+    draw();
+    window.requestAnimationFrame(gameLoop);
+}
+
 window.requestAnimationFrame(draw(data))

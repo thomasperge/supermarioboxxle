@@ -153,8 +153,8 @@ function deplacerPersonnage(tableau, direction, stockFlag) {
     return tableau;
 }
   
-
-let data = Levels[0]
+let level = 0
+let data = Levels[level]
 let stockFlag = functionStockFlag(data)
 
 document.addEventListener("keydown", function(event) {
@@ -171,6 +171,19 @@ document.addEventListener("keydown", function(event) {
       case 39: // Flèche droite
         data = deplacerPersonnage(data, 39, stockFlag)
         break;
+    }
+    let compteur = 0
+    for (let i = 0; i < stockFlag.length; i++) {
+        if (data[stockFlag[i][0]][stockFlag[i][1]] == 2) {
+            compteur++
+        }
+    }
+    if (compteur == stockFlag.length) {
+        if(level <= 5 ){
+            level++
+            data = Levels[level]
+            stockFlag = []
+        }
     }
 
     document.getElementById('gameboard').innerHTML = ""

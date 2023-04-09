@@ -4,8 +4,8 @@
 }
 
 body {
-    background-image: url("./assets/background.gif");
-    background-size: cover;
+    background-image: url("assets/fondmario.gif");
+    background-size:contain;
 }
 
 .flex{
@@ -33,5 +33,16 @@ body {
 .title{
     font-family: "mario";
     font-size: 7vh;
-    color: white;
+    color: black;
+}
+.game{
+    gap: 10vh;
+}
+.containerstats{
+    width: 30%;
+    height: 83vh;
+    border-radius: 20px;
+    background-image: url('./assets/fondcarte.png');
+    overflow: hidden;
+    background-size: cover;
 }

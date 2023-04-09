@@ -152,26 +152,53 @@ function deplacerPersonnage(tableau, direction, stockFlag) {
     console.log(tableau);
     return tableau;
 }
+
+function attemptLevelInner(attemptLevel) {
+    document.querySelector('.attemptLevel').innerHTML = `ATTEMPT LEVEL : ${attemptLevel}`
+}
+
+function attemptTotalInner(attemptTotal) {
+    document.querySelector('.attemptTotal').innerHTML = `ATTEMPT TOTAL : ${attemptTotal}`
+}
   
 let level = 0
-let data = Levels[level]
+let attemptLevel = 0
+let attemptTotal = 0
+let data = JSON.parse(JSON.stringify(Levels[level])); 
 let stockFlag = functionStockFlag(data)
 
 document.addEventListener("keydown", function(event) {
     switch (event.keyCode) {
       case 38: // Flèche haut
+        attemptLevel++
+        attemptTotal++
+        attemptLevelInner(attemptLevel)
+        attemptTotalInner(attemptTotal)
         data = deplacerPersonnage(data, 38, stockFlag)
         break;
       case 40: // Flèche bas
+        attemptLevel++
+        attemptTotal++
+        attemptLevelInner(attemptLevel)
+        attemptTotalInner(attemptTotal)
         data = deplacerPersonnage(data, 40, stockFlag)
         break;
       case 37: // Flèche gauche
+        attemptLevel++
+        attemptTotal++
+        attemptLevelInner(attemptLevel)
+        attemptTotalInner(attemptTotal)
         data = deplacerPersonnage(data, 37, stockFlag)
         break;
       case 39: // Flèche droite
+        attemptLevel++
+        attemptTotal++
+        attemptLevelInner(attemptLevel)
+        attemptTotalInner(attemptTotal)
         data = deplacerPersonnage(data, 39, stockFlag)
         break;
     }
+
     let compteur = 0
     for (let i = 0; i < stockFlag.length; i++) {
         if (data[stockFlag[i][0]][stockFlag[i][1]] == 2) {
@@ -179,22 +206,26 @@ document.addEventListener("keydown", function(event) {
         }
     }
     if (compteur == stockFlag.length) {
+        attemptLevel = 0
+        attemptLevelInner(attemptLevel)
         if(level <= 5 ){
             level++
-            data = Levels[level]
+            data = JSON.parse(JSON.stringify(Levels[level])); 
             stockFlag = []
+            document.querySelector('.level').innerHTML = `LEVEL : ${level} / ${Levels.length-1}`
         }
     }
-
-    document.getElementById('gameboard').innerHTML = ""
-    window.requestAnimationFrame(draw(data))
 });
 
-window.requestAnimationFrame(gameLoop);
+document.getElementById('resetButton').addEventListener('click', () => {
+    data = JSON.parse(JSON.stringify(Levels[level])); 
+    stockFlag = functionStockFlag(data)
+})
 
 function gameLoop() {
-    draw();
-    window.requestAnimationFrame(gameLoop);
+    document.getElementById('gameboard').innerHTML = ""
+    draw(data)
+    window.requestAnimationFrame(gameLoop)
 }
 
-window.requestAnimationFrame(draw(data))
+window.requestAnimationFrame(gameLoop)

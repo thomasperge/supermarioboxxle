@@ -6,6 +6,7 @@
 body {
     background-image: url("assets/fondmario.gif");
     background-size:contain;
+    overflow: hidden;
 }
 
 .flex{
@@ -35,9 +36,11 @@ body {
     font-size: 7vh;
     color: black;
 }
+
 .game{
     gap: 10vh;
 }
+
 .containerstats{
     width: 30%;
     height: 83vh;
@@ -45,4 +48,44 @@ body {
     background-image: url('./assets/fondcarte.png');
     overflow: hidden;
     background-size: cover;
+}
+
+.containerTitleStats {
+    margin-top: 3vh;
+    font-family: "mario";
+    font-size: 6vh;
+    color: black;
+}
+
+.resetButton {
+    cursor: pointer;
+    width: 30%;
+    font-family: "mario";
+    font-size: 4.5vh;
+    color: black;
+    outline: none;
+    border: 2px solid black;
+    padding: 3px 9px 5px 9px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.resetButton:hover {
+    transform: scale(0.95);
+}
+
+.resetButton:active {
+    background-color: rgb(199, 0, 0);
+}
+
+.level {
+    font-size: 4.8vh;
+}
+
+.attemptLevel {
+    font-size: 4.8vh;
+}
+
+.attemptTotal {
+    font-size: 4.8vh;
 }

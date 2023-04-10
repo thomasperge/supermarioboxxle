@@ -5,21 +5,47 @@
     <link rel="stylesheet" href="./style.css">
     <title>Boxxle.io</title>
 </head>
-<body>
-    <!-- Titre -->
-    <div class="flex containertitle">
-        <div class="title">
-            ⭐SUPER MARIO BOXXLE⭐
-        </div> 
-    </div>
-    <!-- Jeu -->
-    <div class="flex game">
-        <div id="gameboard">
+    <body>
+        <!-- Titre -->
+        <div class="flex containertitle">
+            <div class="title">
+                ⭐SUPER MARIO BOXXLE⭐
+            </div> 
         </div>
-        <div class="containerstats">
+        <div class="controls">
+            <img src="assets/volume haut.png" alt="" id="volume">
         </div>
-    </div>
-    
-    <script type= "module" src="./index.js"></script>
-</body>
+        <!-- Jeu -->
+        <div class="flex game">
+            <div id="gameboard">
+            </div>
+            <div class="containerstats">
+                STATS
+                <div class="stats">
+                    level 5 <br>
+                    pas : ...
+                </div>
+            </div>
+        </div>
+        <audio id="mariosong">
+            <source  src="audio/mario-kart.mp3" type="audio/mp3">
+        </audio>
+<script>
+    let msong = document.getElementById("mariosong")
+    let volume = document.getElementById("volume")
+
+    volume.onclick = function(){
+       if (msong.paused) {
+        msong.play();
+        volume.src = "assets/volume bas.jpg"
+       } else {
+        msong.pause();
+        volume.src = "assets/volume haut.png"
+       }
+    }
+
+</script>
+    <script type="module" src="index.js"></script>
+
+    </body>
 </html>

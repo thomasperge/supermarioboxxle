@@ -2,41 +2,50 @@
     font-family: "mario";
     src: url("font/Mario-Kart-DS.ttf");
 }
-
 body {
     background-image: url("assets/fondmario.gif");
     background-size:contain;
 }
-
 .flex{
     display:flex;
     justify-content: center;
     height: auto;
 }
-
 #gameboard{
     width: auto;
     display: grid;
     grid-template-columns: repeat(10, 3.65vw);
     grid-template-rows: repeat(10, 3.65vw);
 }
-
 #gameboard>div{
     background-size: cover;
     height: 3.65vw;
 }
-
 .containertitle{
-    margin: 3vh 0 3.5vh 0;
+    margin: 3vh 0 -4.5vh 0;
 }
-
 .title{
     font-family: "mario";
     font-size: 7vh;
     color: black;
 }
+.controls{
+    position: relative;
+    padding-left: 2vh;
+    bottom: 5vh;
+    display: flex;
+}
+.controls img{
+    cursor: pointer;
+    width: 60px;
+}
 .game{
     gap: 10vh;
+}
+.reset{
+display: flex;
+ width: 11vh;
+ height: 3vh;
 }
 .containerstats{
     width: 30%;
@@ -45,4 +54,10 @@ body {
     background-image: url('./assets/fondcarte.png');
     overflow: hidden;
     background-size: cover;
+    font-family: "mario";
+    font-size: 10vh;
+    text-align: center;
+}
+.stats{
+    font-size: 5vh;
 }

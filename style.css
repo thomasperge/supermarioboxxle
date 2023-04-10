@@ -5,6 +5,7 @@
 body {
     background-image: url("assets/fondmario.gif");
     background-size:contain;
+    overflow: hidden;
 }
 .flex{
     display:flex;
@@ -14,12 +15,12 @@ body {
 #gameboard{
     width: auto;
     display: grid;
-    grid-template-columns: repeat(10, 3.65vw);
-    grid-template-rows: repeat(10, 3.65vw);
+    grid-template-columns: repeat(10, 3.52vw);
+    grid-template-rows: repeat(10, 3.52vw);
 }
 #gameboard>div{
     background-size: cover;
-    height: 3.65vw;
+    height: 3.52vw;
 }
 .containertitle{
     margin: 3vh 0 -4.5vh 0;
@@ -39,6 +40,7 @@ body {
     cursor: pointer;
     width: 60px;
 }
+
 .game{
     gap: 10vh;
 }
@@ -47,17 +49,12 @@ display: flex;
  width: 11vh;
  height: 3vh;
 }
+
 .containerstats{
     width: 30%;
-    height: 83vh;
+    height: auto;
     border-radius: 20px;
     background-image: url('./assets/fondcarte.png');
     overflow: hidden;
     background-size: cover;
-    font-family: "mario";
-    font-size: 10vh;
-    text-align: center;
-}
-.stats{
-    font-size: 5vh;
 }

@@ -5,47 +5,31 @@
     <link rel="stylesheet" href="./style.css">
     <title>Boxxle.io</title>
 </head>
-    <body>
-        <!-- Titre -->
-        <div class="flex containertitle">
-            <div class="title">
-                ⭐SUPER MARIO BOXXLE⭐
-            </div> 
+<body>
+    <!-- Titre -->
+    <div class="flex containertitle">
+        <div class="title">
+            ⭐SUPER MARIO BOXXLE⭐
+        </div> 
+    </div>
+
+    <!-- Jeu -->
+    <div class="flex game">
+        <!-- Game -->
+        <div id="gameboard">
         </div>
-        <div class="controls">
-            <img src="assets/volume haut.png" alt="" id="volume">
-        </div>
-        <!-- Jeu -->
-        <div class="flex game">
-            <div id="gameboard">
+        <!-- Stats -->
+        <div class="containerstats">
+            <div class="containerTitleStats flex">GAMEPLAY</div>
+            <div class="containerTitleStats flex">
+                <button class="resetButton flex" id="resetButton">RESET</button>
             </div>
-            <div class="containerstats">
-                STATS
-                <div class="stats">
-                    level 5 <br>
-                    pas : ...
-                </div>
-            </div>
+            <div class="containerTitleStats level flex">LEVEL : 0 / 5</div>
+            <div class="containerTitleStats attemptLevel flex">ATTEMPT LEVEL : 0</div>
+            <div class="containerTitleStats attemptTotal flex">ATTEMPT TOTAL : 0</div>
         </div>
-        <audio loop id="mariosong">
-            <source  src="audio/mario-kart.mp3" type="audio/mp3">
-        </audio>
-<script>
-    let msong = document.getElementById("mariosong")
-    let volume = document.getElementById("volume")
-
-    volume.onclick = function(){
-       if (msong.paused) {
-        msong.play();
-        volume.src = "assets/volume bas.jpg"
-       } else {
-        msong.pause();
-        volume.src = "assets/volume haut.png"
-       }
-    }
-
-</script>
-    <script type="module" src="index.js"></script>
-
-    </body>
+    </div>
+    
+    <script type= "module" src="./index.js"></script>
+</body>
 </html>

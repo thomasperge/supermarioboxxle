@@ -7,16 +7,21 @@
 </head>
 <body>
     <!-- Titre -->
-    <div class="flex containertitle">
+    <div class="containertitle flex">
         <div class="title">
-            ⭐SUPER MARIO BOXXLE⭐
+            <div class="controls flex">
+                <img src="assets/volume haut.png" alt="" id="volume">
+            </div>
+            <div class="test">SUPER MARIO BOXXLE <span>⭐</span></div>
         </div> 
     </div>
 
+    
     <!-- Jeu -->
     <div class="flex game">
         <!-- Game -->
         <div id="gameboard">
+            <!-- Game inside here -->
         </div>
         <!-- Stats -->
         <div class="containerstats">
@@ -29,7 +34,26 @@
             <div class="containerTitleStats attemptTotal flex">ATTEMPT TOTAL : 0</div>
         </div>
     </div>
+
+    <audio loop id="mariosong">
+        <source src="audio/mario-kart.mp3" type="audio/mp3">
+    </audio>
     
+    <script>
+        let msong = document.getElementById("mariosong")
+        let volume = document.getElementById("volume")
+    
+        volume.onclick = function(){
+           if (msong.paused) {
+            msong.play();
+            volume.src = "assets/volume bas.jpg"
+           } else {
+            msong.pause();
+            volume.src = "assets/volume haut.png"
+           }
+        }
+    </script>
+
     <script type= "module" src="./index.js"></script>
 </body>
 </html>
